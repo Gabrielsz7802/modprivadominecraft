@@ -2,6 +2,7 @@ package br.aetherworld.litrpg.item;
 
 import br.aetherworld.litrpg.AetherWorldMod;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -29,7 +30,7 @@ public final class ModItems {
 
     private static Item register(String name, Item item) {
         return Registry.register(
-                net.minecraft.core.registries.Registries.ITEM,
+                BuiltInRegistries.ITEM,
                 Identifier.fromNamespaceAndPath(AetherWorldMod.MOD_ID, name),
                 item
         );
