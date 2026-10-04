@@ -11,17 +11,20 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import java.util.UUID;
 
 public final class CryptGuardianEntity extends Monster {
     private final ServerBossEvent bossEvent = new ServerBossEvent(
+            UUID.randomUUID(),
             Component.literal("Crypt Guardian E"),
             BossEvent.BossBarColor.PURPLE,
             BossEvent.BossBarOverlay.PROGRESS
@@ -102,13 +105,13 @@ public final class CryptGuardianEntity extends Monster {
                             dz / length * 0.9
                     )
             );
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
+            player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 60, 1));
         }
     }
 
     private void summonCrawlers() {
         for (int i = 0; i < 2; i++) {
-            RiftCrawlerEntity crawler = ModEntities.RIFT_CRAWLER.create(level());
+            RiftCrawlerEntity crawler = ModEntities.RIFT_CRAWLER.create((ServerLevel) level(), EntitySpawnReason.TRIGGERED);
             if (crawler != null) {
                 double angle = i * Math.PI;
                 crawler.moveTo(
