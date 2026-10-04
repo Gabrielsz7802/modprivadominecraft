@@ -1,8 +1,0 @@
-pluginManagement {
-    repositories {
-        maven { url = "https://maven.fabricmc.net/" }
-        gradlePluginPortal()
-        mavenCentral()
-    }
-}
-rootProject.name = "AetherWorld_LitRPG_Core_Fabric_26_1_2"
