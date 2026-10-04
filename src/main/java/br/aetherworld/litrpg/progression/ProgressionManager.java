@@ -22,11 +22,10 @@ public final class ProgressionManager {
         LitRpgComponent data = ModComponents.LITRPG.get(player);
 
         if (!player.level().isClientSide()) {
-            applyAttributeEffects(player, data);
-
             if (player.tickCount % 20 == 0) {
-                double regen = data.getIntelligence() * 0.05;
-                data.restoreMana(regen);
+                applyAttributeEffects(player, data);
+
+                data.restoreMana(data.getIntelligence() * 0.05);
 
                 if (data.getMana() <= 0.0) {
                     player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0));
@@ -47,12 +46,13 @@ public final class ProgressionManager {
             data.setExperience(data.getExperience() - required);
 
             data.setLevel(data.getLevel() + 1);
+            data.addLevelUpStats();
+            data.setFreePoints(data.getFreePoints() + 20);
+            data.addSystemPoints(5);
             data.setExperienceMax(Math.max(
                     100,
                     (int) Math.floor(data.getLevel() * 100.0 * 1.5)
             ));
-            data.setFreePoints(data.getFreePoints() + 20);
-            data.addSystemPoints(5);
 
             player.level().playSound(
                     null,
@@ -95,14 +95,14 @@ public final class ProgressionManager {
     }
 
     public static void applyAttributeEffects(Player player, LitRpgComponent data) {
-        setBase(player, Attributes.ATTACK_DAMAGE,
-                1.0 + Math.max(0, data.getStrength() - 10) / 2.0);
-        setBase(player, Attributes.MOVEMENT_SPEED,
-                0.1 + Math.max(0, data.getAgility() - 10) / 5.0 * 0.02);
-        setBase(player, Attributes.ATTACK_SPEED,
-                4.0 + Math.max(0, data.getAgility() - 10) / 5.0 * 0.1);
-        setBase(player, Attributes.MAX_HEALTH,
-                20.0 + Math.max(0, data.getVitality() - 10) * 2.0);
+        int strengthSteps = Math.max(0, data.getStrength() - 10) / 2;
+        int agilitySteps = Math.max(0, data.getAgility() - 10) / 5;
+        int vitalitySteps = Math.max(0, data.getVitality() - 10);
+
+        setBase(player, Attributes.ATTACK_DAMAGE, 1.0 + strengthSteps * 1.0);
+        setBase(player, Attributes.MOVEMENT_SPEED, 0.1 + agilitySteps * 0.02);
+        setBase(player, Attributes.ATTACK_SPEED, 4.0 + agilitySteps * 0.1);
+        setBase(player, Attributes.MAX_HEALTH, 20.0 + vitalitySteps * 2.0);
 
         if (player.getHealth() > player.getMaxHealth()) {
             player.setHealth(player.getMaxHealth());
