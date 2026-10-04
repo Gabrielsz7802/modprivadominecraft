@@ -1,7 +1,7 @@
 package br.aetherworld.litrpg.client;
 
 import br.aetherworld.litrpg.entity.FallenRuneSentinelEntity;
-import net.minecraft.client.model.GhastModel;
+import net.minecraft.client.model.monster.ghast.GhastModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
