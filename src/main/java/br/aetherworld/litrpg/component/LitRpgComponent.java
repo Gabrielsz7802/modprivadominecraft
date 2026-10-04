@@ -15,12 +15,15 @@ public interface LitRpgComponent extends ComponentV3 {
     void setSystemPoints(int value);
     double getMana();
     void setMana(double value);
+
     int getStrength();
     int getAgility();
     int getVitality();
     int getIntelligence();
     int getPerception();
+
     boolean spendAttributePoint(String attribute);
+    void addLevelUpStats();
     boolean spendSystemPoints(int amount);
     void addExperience(int amount);
     void addSystemPoints(int amount);
