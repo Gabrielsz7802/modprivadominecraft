@@ -114,13 +114,13 @@ public final class CryptGuardianEntity extends Monster {
             RiftCrawlerEntity crawler = ModEntities.RIFT_CRAWLER.create((ServerLevel) level(), EntitySpawnReason.TRIGGERED);
             if (crawler != null) {
                 double angle = i * Math.PI;
-                crawler.moveTo(
+                crawler.setPos(
                         getX() + Math.cos(angle) * 2.5,
                         getY(),
-                        getZ() + Math.sin(angle) * 2.5,
-                        getYRot(),
-                        0.0F
+                        getZ() + Math.sin(angle) * 2.5
                 );
+                crawler.setYRot(getYRot());
+                crawler.setXRot(0.0F);
                 level().addFreshEntity(crawler);
             }
         }
