@@ -133,7 +133,7 @@ public final class LitRpgComponentImpl implements LitRpgComponent, AutoSyncedCom
         experienceMax = Math.max(1, input.getInt("experienceMax").orElse(100));
         freePoints = Math.max(0, input.getInt("freePoints").orElse(0));
         systemPoints = Math.max(0, input.getInt("systemPoints").orElse(0));
-        mana = Math.max(0.0, input.getDouble("mana").orElse(100.0));
+        mana = Math.max(0.0, input.getInt("mana").orElse(100));
         strength = Math.max(1, input.getInt("strength").orElse(10));
         agility = Math.max(1, input.getInt("agility").orElse(10));
         vitality = Math.max(1, input.getInt("vitality").orElse(10));
@@ -149,7 +149,7 @@ public final class LitRpgComponentImpl implements LitRpgComponent, AutoSyncedCom
         output.putInt("experienceMax", experienceMax);
         output.putInt("freePoints", freePoints);
         output.putInt("systemPoints", systemPoints);
-        output.putDouble("mana", mana);
+        output.putInt("mana", (int) Math.round(mana));
         output.putInt("strength", strength);
         output.putInt("agility", agility);
         output.putInt("vitality", vitality);
