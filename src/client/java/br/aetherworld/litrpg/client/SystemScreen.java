@@ -53,7 +53,7 @@ public final class SystemScreen extends Screen {
     }
 
     @Override
-    protected void extractRenderState(
+    public void extractRenderState(
             GuiGraphicsExtractor graphics,
             int mouseX,
             int mouseY,
