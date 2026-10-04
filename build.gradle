@@ -7,11 +7,15 @@ group = project.maven_group
 version = project.mod_version
 base { archivesName = project.archives_base_name }
 
-loom { splitEnvironmentSourceSets()
-    mods { "aetherworld" { sourceSet sourceSets.main; sourceSet sourceSets.client } }
+loom {
+    splitEnvironmentSourceSets()
+    mods {
+        "aetherworld" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
 }
-
-repositories { maven { url = 'https://maven.fabricmc.net/' } }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -26,5 +30,8 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach { it.options.release = 25 }
-java { sourceCompatibility = JavaVersion.VERSION_25; targetCompatibility = JavaVersion.VERSION_25; withSourcesJar() }
-jar { from('LICENSE') { rename { "${it}_${project.base.archivesName.get()}" } } }
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+    withSourcesJar()
+}
