@@ -38,7 +38,7 @@ public final class ModEntities {
             EntityType.Builder<T> builder
     ) {
         Identifier id = Identifier.fromNamespaceAndPath(AetherWorldMod.MOD_ID, name);
-        ResourceKey<EntityType<?>> key = ResourceKey.create(
+        ResourceKey<EntityType<T>> key = ResourceKey.create(
                 net.minecraft.core.registries.Registries.ENTITY_TYPE,
                 id
         );
@@ -51,17 +51,8 @@ public final class ModEntities {
     }
 
     public static void init() {
-        FabricDefaultAttributeRegistry.register(
-                RIFT_CRAWLER,
-                RiftCrawlerEntity.createAttributes()
-        );
-        FabricDefaultAttributeRegistry.register(
-                FALLEN_RUNE_SENTINEL,
-                FallenRuneSentinelEntity.createAttributes()
-        );
-        FabricDefaultAttributeRegistry.register(
-                CRYPT_GUARDIAN,
-                CryptGuardianEntity.createAttributes()
-        );
+        FabricDefaultAttributeRegistry.register(RIFT_CRAWLER, RiftCrawlerEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(FALLEN_RUNE_SENTINEL, FallenRuneSentinelEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(CRYPT_GUARDIAN, CryptGuardianEntity.createAttributes());
     }
 }
