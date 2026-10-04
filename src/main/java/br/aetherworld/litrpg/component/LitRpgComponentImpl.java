@@ -1,6 +1,5 @@
 package br.aetherworld.litrpg.component;
 
-import br.aetherworld.litrpg.network.ModNetworking;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -77,6 +76,17 @@ public final class LitRpgComponentImpl implements LitRpgComponent, AutoSyncedCom
     }
 
     @Override
+    public void addLevelUpStats() {
+        strength += 2;
+        agility += 2;
+        vitality += 2;
+        intelligence += 2;
+        perception += 2;
+        mana = Math.min(mana, getMaxMana());
+        sync();
+    }
+
+    @Override
     public boolean spendSystemPoints(int amount) {
         if (amount <= 0 || systemPoints < amount) return false;
         systemPoints -= amount;
@@ -148,8 +158,6 @@ public final class LitRpgComponentImpl implements LitRpgComponent, AutoSyncedCom
     }
 
     private void sync() {
-        if (ModNetworking.IS_READY) {
-            br.aetherworld.litrpg.component.ModComponents.LITRPG.sync(provider);
-        }
+        ModComponents.LITRPG.sync(provider);
     }
 }
