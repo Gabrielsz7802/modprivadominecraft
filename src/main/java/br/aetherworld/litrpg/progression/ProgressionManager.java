@@ -28,8 +28,8 @@ public final class ProgressionManager {
                 data.restoreMana(data.getIntelligence() * 0.05);
 
                 if (data.getMana() <= 0.0) {
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0));
-                    player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 40, 0));
+                    player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 40, 0));
+                    player.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 40, 0));
                 }
             }
         }
