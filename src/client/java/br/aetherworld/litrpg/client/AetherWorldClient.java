@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ZombieRenderer;
 import net.minecraft.resources.Identifier;
 
 public final class AetherWorldClient implements ClientModInitializer {
@@ -39,9 +38,9 @@ public final class AetherWorldClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        EntityRenderers.register(ModEntities.RIFT_CRAWLER, ZombieRenderer::new);
-        EntityRenderers.register(ModEntities.FALLEN_RUNE_SENTINEL, ZombieRenderer::new);
-        EntityRenderers.register(ModEntities.CRYPT_GUARDIAN, ZombieRenderer::new);
+        EntityRenderers.register(ModEntities.RIFT_CRAWLER, RiftCrawlerRenderer::new);
+        EntityRenderers.register(ModEntities.FALLEN_RUNE_SENTINEL, FallenRuneSentinelRenderer::new);
+        EntityRenderers.register(ModEntities.CRYPT_GUARDIAN, CryptGuardianRenderer::new);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (SYSTEM_KEY.consumeClick()) {
