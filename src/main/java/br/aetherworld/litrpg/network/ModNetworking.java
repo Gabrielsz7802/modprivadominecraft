@@ -8,6 +8,7 @@ import br.aetherworld.litrpg.shop.ShopEntry;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.Monster;
@@ -113,6 +114,6 @@ public final class ModNetworking {
     }
 
     private static void actionbar(ServerPlayer player, String message) {
-        player.displayClientMessage(Component.literal(message), true);
+        player.connection.send(new ClientboundSetActionBarTextPacket(Component.literal(message)));
     }
 }
