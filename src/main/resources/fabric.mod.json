@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "aetherworld_litrpg",
+  "version": "${version}",
+  "name": "AetherWorld LiteRPG System",
+  "description": "Sistema LiteRPG persistente para Minecraft Fabric 26.1.2.",
+  "authors": ["Gabrielsz7802"],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "br.aetherworld.litrpg.AetherWorldMod"
+    ],
+    "client": [
+      "br.aetherworld.litrpg.client.AetherWorldClient"
+    ],
+    "cardinal-components": [
+      "br.aetherworld.litrpg.component.ModComponents"
+    ]
+  },
+  "mixins": [
+    "aetherworld.mixins.json"
+  ],
+  "custom": {
+    "cardinal-components": [
+      "aetherworld_litrpg:litrpg"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "26.1.2",
+    "java": ">=25",
+    "fabric-api": ">=0.155.3+26.1.2",
+    "cardinal-components-base": ">=8.0.0",
+    "cardinal-components-entity": ">=8.0.0"
+  }
+}
